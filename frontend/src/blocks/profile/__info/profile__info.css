@@ -1,0 +1,16 @@
+.profile__info{
+  position: absolute;
+  top: 0;
+  left: 150px;
+  width: 336px;
+}
+
+@media screen and (max-width: 720px) {
+  .profile__info {
+    position: relative;
+    max-width: 282px;
+    margin: 0 auto;
+    margin-top: 22px;
+    left: 0;
+  }
+}
