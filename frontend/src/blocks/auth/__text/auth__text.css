@@ -1,0 +1,18 @@
+.auth__text {
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.2;
+  color: white;
+  text-align: center;
+  transition: opacity .2s ease;
+  position: absolute;
+  top: 623px;
+}
+
+@media screen and (max-width: 450px) {
+  .auth__text {
+    top: 580px;
+  }
+}

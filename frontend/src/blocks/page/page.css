@@ -1,0 +1,6 @@
+.page {
+  margin: 0 auto;
+  max-width: 880px;
+  box-sizing: border-box;
+  align-items: center;
+}

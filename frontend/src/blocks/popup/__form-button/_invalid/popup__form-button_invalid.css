@@ -1,0 +1,10 @@
+.popup__form-button_invalid {
+  background: #FFFFFF;
+  color: #000000;
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.popup__form-button_invalid:hover {
+  opacity: 0.3;
+}
