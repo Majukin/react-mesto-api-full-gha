@@ -9,16 +9,22 @@ const handleAuthError = (next) => {
   next(new UnauthorizedError('Необходима авторизация'));
 };
 
+const tokenVerify = (token) => {
+  try {
+    return jwt.verify(token, MY_SECRET_KEY);
+  } catch (err) {
+    return '';
+  }
+};
+
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.cookies.jwt || req.headers.authorization.replace('Bearer ', '');
   if (!token) {
     return handleAuthError(next);
   }
-  let payload;
-  try {
-    payload = jwt.verify(token, MY_SECRET_KEY);
-  } catch (err) {
-    return handleAuthError(next);
+  const payload = tokenVerify(token);
+  if (!payload) {
+    handleAuthError(next);
   }
   req.user = payload;
   return next();
