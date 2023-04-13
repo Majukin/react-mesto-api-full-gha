@@ -12,7 +12,7 @@ const NotFoundError = require('./errors/NotFoundError');
 
 const app = express();
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -21,9 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const allowedCors = [
   'https://praktikum.tk',
   'http://praktikum.tk',
-  'localhost:3001',
-  'http://localhost:3001',
-  'http://127.0.0.1:3001',
+  'localhost:3000',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
   /(https|http)?:\/\/(?:www\.|(?!www))mesto.online.nomoredomains.work\/[a-z]+\/|[a-z]+\/|[a-z]+(\/|)/,
 ];
 
