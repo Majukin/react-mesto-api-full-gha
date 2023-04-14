@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
+const ValidationError = require('../errors/ValidationError');
 
 require('dotenv').config();
 
@@ -30,6 +31,9 @@ module.exports.createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === 11000) {
         next(new ConflictError('Пользователь уже существует'));
+        return;
+      } if (err.name === 'ValidationError') {
+        next(new ValidationError('Некорректные данные в методе создания пользователя'));
         return;
       }
       next(err);
@@ -64,7 +68,13 @@ module.exports.updateProfile = (req, res, next) => {
       name,
       about,
     }))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Некорректные данные в методе обновления профиля'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.updateAvatar = (req, res, next) => {
@@ -77,7 +87,13 @@ module.exports.updateAvatar = (req, res, next) => {
       name: user.name,
       about: user.about,
     }))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new ValidationError('Некорректные данные в методе обновления аватара'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {

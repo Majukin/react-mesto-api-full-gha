@@ -18,7 +18,7 @@ const tokenVerify = (token) => {
 };
 
 module.exports = (req, res, next) => {
-  const token = req.cookies.jwt || req.headers.authorization.replace('Bearer ', '');
+  const token = req.headers.authorization.replace('Bearer ', '');
   if (!token) {
     return handleAuthError(next);
   }
